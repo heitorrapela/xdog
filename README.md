@@ -1,7 +1,6 @@
-# XDOG-image-stylization-test
+# python-xdog
 
-Simple implementation of XDOG for studies 
-
+## Simple implementation of XDOG for studies 
 
 Test time in Difference of Gaussians (DoG) implementation:
 
@@ -20,10 +19,13 @@ Test time in Difference of Gaussians (DoG) implementation:
 
 	elapsed = 0.00245594978333
 
-	So opencv cv2.GaussianBlur is faster and
+	So opencv cv2.GaussianBlur is faster. The difference from gaussian blur result from OpenCV and SciPy is similar.
+	The difference from each mat can be seen in image below (image in folder /imgs/gaussian_opencvXscipy.png):
 
+UPDATE IMAGE LINK
 
-References used in these project
+## References used in these project
 
-[XDoG: An eXtended difference-of-Gaussians compendium including advanced image stylization](http://www.kyprianidis.com/p/cag2012/winnemoeller-cag2012.pdf)
+[XDoG Article](http://www.kyprianidis.com/p/cag2012/winnemoeller-cag2012.pdf)
+
 [garygrossi/XDoG-Python](https://github.com/garygrossi/XDoG-Python)
