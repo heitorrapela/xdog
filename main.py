@@ -33,7 +33,7 @@ def edge_dog(img,sigma=0.5,k=200,gamma=0.98):
 				aux[i,j] = 0
 	return aux
 
-# xdog adapted from garygrossi
+# garygrossi xdog version
 def xdog_garygrossi(img,sigma=0.5,k=200, gamma=0.98,epsilon=0.1,phi=10):
 	aux = dog(img,sigma=sigma,k=k,gamma=gamma)/255
 	for i in range(0,aux.shape[0]):
@@ -44,6 +44,13 @@ def xdog_garygrossi(img,sigma=0.5,k=200, gamma=0.98,epsilon=0.1,phi=10):
 				ht = np.tanh(phi*(aux[i][j] - epsilon))
 				aux[i][j] = 1 + ht
 	return aux*255
+
+def hatchBlend(image):
+	xdogImage = xdog(img,sigma=1,k=200, gamma=0.5,epsilon=-0.5,phi=10)
+	hatchTexture = cv2.imread('./imgs/hatch.jpg', cv2.CV_LOAD_IMAGE_GRAYSCALE)
+	hatchTexture = cv2.resize(hatchTexture,image.shape)
+	alpha = 0.120
+	return (1-alpha)*xdogImage + alpha*hatchTexture
 
 # version of xdog inspired by article
 def xdog(img,sigma=0.5,k=1.6, gamma=1,epsilon=1,phi=1):
@@ -61,12 +68,13 @@ if __name__ == '__main__':
 	# Open image in grayscale
 	#img = cv2.imread('imgs/rapela.jpg',cv2.CV_LOAD_IMAGE_GRAYSCALE)
 	
-	img = cv2.imread('imgs/lena.png',cv2.CV_LOAD_IMAGE_GRAYSCALE)
+	img = cv2.imread('imgs/rapela.jpg',cv2.CV_LOAD_IMAGE_GRAYSCALE)
 
 	# k = 1.6 as proposed in the paper
 	k = 1.6
-
-	#cv2.imshow("Lena", dog(img))
+	
+	'''
+	cv2.imshow("Lena", img)
 	#edge_dog(img)
 	#cv2.imshow("tessst",edge_dog(img,sigma=0.5,k=200, gamma=0.98))
 	#cv2.waitKey(0)
@@ -82,7 +90,19 @@ if __name__ == '__main__':
 	# Natural media (tried to follow parameters of article)
 	cv2.imshow("Natural Media",np.uint8(xdog(img,sigma=1,k=1.6, gamma=0.5,epsilon=-0.5,phi=10)))
 
+	cv2.imshow("Hatch Lena",np.uint8(hatch(img)))
+
+
+
 	cv2.waitKey(0)
+	'''
+	#cv2.imshow("Test", np.uint8(hatch(img)))
+	#cv2.waitKey(0)
+
+	hatchTexture = hatchBlend(img)
+	cv2.imshow("Image",np.uint8(hatchTexture))
+	cv2.waitKey(0)
+	
 
 '''
 # Video version - Its not real time version :)
