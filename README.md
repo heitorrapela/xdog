@@ -1,6 +1,6 @@
 # python-xdog
 
-## Simple implementation of XDOG for studies 
+## Simple implementation of XDoG
 
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
@@ -19,6 +19,28 @@
  - d) Xdog this project: sigma=1, k=1.6, gamma=0.5, epsilon=-0.5, phi=10
  - e) Xdog this project: sigma=0.4, k=1.6, gamma=0.5, epsilon=-0.5, phi=10
  - f)  Xdog this project: hatchBlend function
+
+----------
+## Dependencies
+
+ - Python 2.7 
+ - OpenCV (Tested on 2.4.13)
+
+		sudo apt-get install python-opencv
+		
+ - Numpy 1.11.2
+ 
+		pip install numpy
+
+If you want to run video_jit.py:
+ - [Numba](https://numba.pydata.org/)
+  
+		conda install numba
+
+There is a requirement.txt to install numpy and numba:
+	
+	pip install -r requirements.txt
+
 
 ----------
 

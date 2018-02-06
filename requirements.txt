@@ -1,0 +1,2 @@
+numba==0.30.1+0.g8c1033f.dirty
+numpy==1.11.2

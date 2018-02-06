@@ -1,20 +1,5 @@
 import cv2
 import numpy as np
-from scipy.ndimage.filters import gaussian_filter
-import time
-from matplotlib import pyplot as plt
-
-def calculateHistogram3d(img):
-	color = ('b','g','r')
-	img = abs(img)
-	for i,col in enumerate(color):
-	    histr = cv2.calcHist([img],[i],None,[256],[0,256])
-	    plt.plot(histr,color = col)
-	    plt.xlim([0,256])
-	plt.show()
-
-def calculateHistogram1d(img):
-	plt.hist(img.ravel(),256,[0,256]); plt.show()
 
 # Difference of Gaussians applied to img input
 def dog(img,size=(0,0),k=1.6,sigma=0.5,gamma=1):
@@ -46,9 +31,9 @@ def xdog_garygrossi(img,sigma=0.5,k=200, gamma=0.98,epsilon=0.1,phi=10):
 	return aux*255
 
 def hatchBlend(image):
-	xdogImage = xdog(img,sigma=1,k=200, gamma=0.5,epsilon=-0.5,phi=10)
+	xdogImage = xdog(image,sigma=1,k=200, gamma=0.5,epsilon=-0.5,phi=10)
 	hatchTexture = cv2.imread('./imgs/hatch.jpg', cv2.CV_LOAD_IMAGE_GRAYSCALE)
-	hatchTexture = cv2.resize(hatchTexture,image.shape)
+	hatchTexture = cv2.resize(hatchTexture,(image.shape[1],image.shape[0]))
 	alpha = 0.120
 	return (1-alpha)*xdogImage + alpha*hatchTexture
 
