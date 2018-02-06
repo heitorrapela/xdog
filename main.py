@@ -66,66 +66,26 @@ def xdog(img,sigma=0.5,k=1.6, gamma=1,epsilon=1,phi=1):
 
 if __name__ == '__main__':
 	# Open image in grayscale
-	#img = cv2.imread('imgs/rapela.jpg',cv2.CV_LOAD_IMAGE_GRAYSCALE)
+	#img = cv2.imread('imgs/lena.jpg',cv2.CV_LOAD_IMAGE_GRAYSCALE)
 	
 	img = cv2.imread('imgs/rapela.jpg',cv2.CV_LOAD_IMAGE_GRAYSCALE)
-
+	img = cv2.resize(img,(400,400))
 	# k = 1.6 as proposed in the paper
 	k = 1.6
+
+	cv2.imshow("Original in Grayscale", img)
 	
-	'''
-	cv2.imshow("Lena", img)
-	#edge_dog(img)
-	#cv2.imshow("tessst",edge_dog(img,sigma=0.5,k=200, gamma=0.98))
-	#cv2.waitKey(0)
-	#cv2.imshow("Lena",dog(img,gamma=1))
-	#cv2.waitKey(0)
-	cv2.imshow("XBUDOG",np.uint8(xdog_garygrossi(img,sigma=0.5,k=200, gamma=0.98,epsilon=0.1,phi=10)))
-	#cv2.imshow("XBUDOG2",np.uint8(xdog_garygrossi(img)))
-	cv2.imshow("XBUDOG_mine",np.uint8(xdog(img,sigma=0.4,k=1.6, gamma=0.5,epsilon=-0.5,phi=10)))
+	cv2.imshow("Edge DoG",edge_dog(img,sigma=0.5,k=200, gamma=0.98))
 	
-	# Test
-	cv2.imshow("XBUDOG_mineTest",np.uint8(xdog(img,sigma=1.6,k=1.6, gamma=0.5,epsilon=-1,phi=10)))
+	cv2.imshow("XDoG GaryGrossi",np.uint8(xdog_garygrossi(img,sigma=0.5,k=200, gamma=0.98,epsilon=0.1,phi=10)))
+
+	cv2.imshow("XDoG Project 1",np.uint8(xdog(img,sigma=0.4,k=1.6, gamma=0.5,epsilon=-0.5,phi=10)))
+
+	cv2.imshow("XDoG Project 2",np.uint8(xdog(img,sigma=1.6,k=1.6, gamma=0.5,epsilon=-1,phi=10)))
 
 	# Natural media (tried to follow parameters of article)
-	cv2.imshow("Natural Media",np.uint8(xdog(img,sigma=1,k=1.6, gamma=0.5,epsilon=-0.5,phi=10)))
+	cv2.imshow("XDoG Project 3 - Natural Media",np.uint8(xdog(img,sigma=1,k=1.6, gamma=0.5,epsilon=-0.5,phi=10)))
 
-	cv2.imshow("Hatch Lena",np.uint8(hatch(img)))
-
-
+	cv2.imshow("XDoG Project 4 - Hatch",np.uint8(hatchBlend(img)))
 
 	cv2.waitKey(0)
-	'''
-	#cv2.imshow("Test", np.uint8(hatch(img)))
-	#cv2.waitKey(0)
-
-	hatchTexture = hatchBlend(img)
-	cv2.imshow("Image",np.uint8(hatchTexture))
-	cv2.waitKey(0)
-	
-
-'''
-# Video version - Its not real time version :)
-if __name__ == '__main__':
-	# Open image in grayscale
-	cap = cv2.VideoCapture(0)
-		
-	# k = 1.6 as proposed in the paper
-	k = 1.6
-
-	while(True):
-		# Capture frame-by-frame
-		ret, frame = cap.read()
-
-		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-		# Display the resulting frame
-		cv2.imshow("Natural Media",np.uint8(xdog(gray,sigma=1,k=1.6, gamma=0.5,epsilon=-0.5,phi=10)))
-		cv2.imshow("Gary",np.uint8(xdog_garygrossi(gray)))
-		if cv2.waitKey(1) & 0xFF == ord('q'):
-			break
-
-	# When everything done, release the capture
-	cap.release()
-	cv2.destroyAllWindows()
-'''
