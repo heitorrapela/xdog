@@ -1,6 +1,9 @@
+
 # python-xdog
 
 ## Simple implementation of XDoG
+
+There are two principle files: main.py to run xdog implementation with image and video_jit to run in "real time" with webcam
 
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
@@ -19,6 +22,12 @@
  - d) Xdog this project: sigma=1, k=1.6, gamma=0.5, epsilon=-0.5, phi=10
  - e) Xdog this project: sigma=0.4, k=1.6, gamma=0.5, epsilon=-0.5, phi=10
  - f)  Xdog this project: hatchBlend function
+
+----------
+
+## Demo of video_jit.py
+
+![Webcam XDoG Demo](https://github.com/heitorrapela/xdog/blob/master/imgs/rapela_xdog.gif)
 
 ----------
 ## Dependencies
@@ -71,3 +80,4 @@ There is a requirement.txt to install numpy and numba:
 [Xdog Article](http://www.kyprianidis.com/p/cag2012/winnemoeller-cag2012.pdf)
 
 [garygrossi/XDoG-Python](https://github.com/garygrossi/XDoG-Python)
+
